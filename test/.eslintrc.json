@@ -1,0 +1,30 @@
+{
+  "env":{
+    "browser": false,
+    "es6": true,
+    "mocha": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:mocha/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "expect": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "mocha"
+  ],
+  "rules": {
+    "func-names": "off",
+    "mocha/prefer-arrow-callback": "error",
+    "mocha/no-exclusive-tests": "error",
+    "prefer-arrow-callback": "off"
+  }
+}
