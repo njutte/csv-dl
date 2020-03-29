@@ -42,5 +42,7 @@
   "dependencies": {
     "json2csv": "^5.0.0"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
