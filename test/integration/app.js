@@ -17,8 +17,8 @@ const demo = (request, response, next) => {
 };
 
 const loadData = (request, response, next) => {
-  response.state = {
-    data: [
+  request.state = {
+    body: [
       { name: 'a', value: 1 },
       { name: 'b', value: 2 },
       { name: 'c', value: 3 },

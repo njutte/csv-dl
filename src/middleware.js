@@ -9,9 +9,9 @@ const middlewareBuilder = (parser = new Parser()) => {
   if (!(parser instanceof Parser)) throw new Error('parser must be a JSON2CSVParser');
 
   return (request, response, next) => {
-    const { data } = response.state;
+    const { body } = request.state;
     try {
-      const csv = parser.parse(data);
+      const csv = parser.parse(body);
       response.attachment('data.csv');
       response.send(csv);
     } catch (error) {

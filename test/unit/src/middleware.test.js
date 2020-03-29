@@ -10,21 +10,22 @@ describe('middlewareBuilder', function () {
     });
 
     describe('middleware function', function () {
-      context('when body.data is parseable', function () {
+      context('when state.body is parseable', function () {
         before(function () {
           this.next = sinon.spy();
           this.response = {
             attachment: sinon.spy(),
+            send: sinon.spy(),
+          };
+          this.request = {
             state: {
-              data: [
+              body: [
                 { name: 'a', value: 1 },
                 { name: 'b', value: 2 },
                 { name: 'c', value: 3 },
               ],
             },
-            send: sinon.spy(),
           };
-          this.request = {};
           const middleware = middlewareBuilder();
           middleware(this.request, this.response, this.next);
         });
@@ -48,15 +49,16 @@ describe('middlewareBuilder', function () {
         });
       });
 
-      context('when state.data is missing', function () {
+      context('when state.body is missing', function () {
         before(function () {
           this.next = sinon.spy();
           this.response = {
             attachment: sinon.spy(),
-            state: {},
             send: sinon.spy(),
           };
-          this.request = {};
+          this.request = {
+            state: {},
+          };
           const middleware = middlewareBuilder();
           middleware(this.request, this.response, this.next);
         });
@@ -83,38 +85,39 @@ describe('middlewareBuilder', function () {
     });
 
     describe('middleware function', function () {
-      context('when body.data is parseable', function () {
+      context('when stae.body is parseable', function () {
         before(function () {
           const parser = new Parser();
           this.parseSpy = sinon.spy(parser, 'parse');
           this.next = sinon.spy();
           this.response = {
             attachment: sinon.spy(),
+            send: sinon.spy(),
+          };
+          this.request = {
             state: {
-              data: [
+              body: [
                 { name: 'a', value: 1 },
                 { name: 'b', value: 2 },
                 { name: 'c', value: 3 },
               ],
             },
-            send: sinon.spy(),
           };
-          this.request = {};
           const middleware = middlewareBuilder(parser);
           middleware(this.request, this.response, this.next);
         });
 
         it('calls parse on the supplied parser with data', function () {
           const {
-            response: {
+            request: {
               state: {
-                data,
+                body,
               },
             },
             parseSpy,
           } = this;
 
-          expect(expect(parseSpy).calledOnceWithExactly(data));
+          expect(expect(parseSpy).calledOnceWithExactly(body));
         });
 
         it('calls next once', function () {
@@ -136,32 +139,28 @@ describe('middlewareBuilder', function () {
         });
       });
 
-      context('when state.data is missing', function () {
+      context('when state.body is missing', function () {
         before(function () {
           const parser = new Parser();
           this.parseSpy = sinon.spy(parser, 'parse');
           this.next = sinon.spy();
           this.response = {
             attachment: sinon.spy(),
-            state: {},
             send: sinon.spy(),
           };
-          this.request = {};
+          this.request = {
+            state: {},
+          };
           const middleware = middlewareBuilder(parser);
           middleware(this.request, this.response, this.next);
         });
 
         it('calls parse on the supplied parser with data', function () {
           const {
-            response: {
-              state: {
-                data,
-              },
-            },
             parseSpy,
           } = this;
 
-          expect(expect(parseSpy).calledOnceWithExactly(data));
+          expect(expect(parseSpy).calledOnceWithExactly(undefined));
         });
 
         it('calls next once with an error', function () {
