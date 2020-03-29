@@ -1,0 +1,45 @@
+{
+  "name": "express-json2csv-middleware",
+  "version": "0.0.1",
+  "description": "Express middleware for returning csv data",
+  "main": "index.js",
+  "scripts": {
+    "demo": "node ./test/integration/demo.js",
+    "eslint": "eslint . --ext .js --ignore-path .gitignore",
+    "integration": "mocha  --file ./test/bootstrap.js ./test/integration/**.test.js",
+    "test": "npm run unit & npm run integration",
+    "unit": "mocha  --file ./test/bootstrap.js ./test/unit/*/**.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njutte/express-json2csv-middleware.git"
+  },
+  "keywords": [
+    "express",
+    "json",
+    "csv"
+  ],
+  "author": "Nicholas Jutte",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/njutte/express-json2csv-middleware/issues"
+  },
+  "homepage": "https://github.com/njutte/express-json2csv-middleware#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-mocha": "^6.3.0",
+    "express": "^4.17.1",
+    "json-schema-faker": "^0.5.0-rcv.24",
+    "lodash": "^4.17.15",
+    "mocha": "^7.1.1",
+    "sinon": "^9.0.1",
+    "sinon-chai": "^3.5.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "json2csv": "^5.0.0"
+  }
+}
