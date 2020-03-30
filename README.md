@@ -3,7 +3,7 @@ A middleware for responding to express routes with csv data parsed using json2cs
 
 #Installation
 
-``` npm install https://github.com/njutte/express-json2csv-middleware ```
+``` npm install express-json2csv-middleware ```
 
 #Usage
 
