@@ -1,6 +1,6 @@
 {
   "name": "express-json2csv-middleware",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Express middleware for returning csv data",
   "main": "index.js",
   "scripts": {
